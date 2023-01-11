@@ -2,16 +2,15 @@
 import {ImageGalleryItemImage, ImageGalleryItem } from "./ImageGalleryItem.styled"
 
 
-export const GalleryItem  =({images}) => {
-images.map(({id, webformatURL, largeImageURL}) => {
-
+export const GalleryItem  =({webformatURL, tags, largeImageURL, imagesClick}) => {
   return(
-    <ul>
-        <ImageGalleryItem key={id}>
-    <ImageGalleryItemImage src={webformatURL} alt={id} />
-  </ImageGalleryItem>
-    </ul>
+        <ImageGalleryItem>
+    <ImageGalleryItemImage 
+    src={webformatURL} 
+    alt={tags} 
+    onClick={() => imagesClick(largeImageURL)}
+    />
 
+  </ImageGalleryItem>
   )
-})
 }
