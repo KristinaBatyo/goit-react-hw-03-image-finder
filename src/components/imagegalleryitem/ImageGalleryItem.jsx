@@ -1,14 +1,17 @@
-import { Component } from "react";
+
 import {ImageGalleryItemImage, ImageGalleryItem } from "./ImageGalleryItem.styled"
 
 
-export class GalleryItem extends Component {
+export const GalleryItem  =({images}) => {
+images.map(({id, webformatURL, largeImageURL}) => {
 
-render(){
   return(
-<ImageGalleryItem>
-  <ImageGalleryItemImage src="" alt="" />
-</ImageGalleryItem>
+    <ul>
+        <ImageGalleryItem key={id}>
+    <ImageGalleryItemImage src={webformatURL} alt={id} />
+  </ImageGalleryItem>
+    </ul>
+
   )
-}
+})
 }
