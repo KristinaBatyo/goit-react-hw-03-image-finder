@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 
 
 
-export const Gallery = ({props, imagesClick}) => {
-    const images = props.images;
-
+export const Gallery = ({image, imagesClick}) => {
         return(
             
             <ImageGallery>
-                {images.map(({id, webformatURL, tags, largeImageURL}) => (
+                {image.map(({id, webformatURL, tags, largeImageURL}) => (
                 <GalleryItem
                 key={id}
                 webformatURL={webformatURL}
@@ -25,13 +23,13 @@ export const Gallery = ({props, imagesClick}) => {
 }
 
 Gallery.propTypes = {
-    images: PropTypes.arrayOf(
+    image: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
-            webformatURL: PropTypes.string,
-            tags: PropTypes.string,
-            largeImageURL: PropTypes.string,
+            webformatURL: PropTypes.string.isRequired,
+            tags: PropTypes.string.isRequired,
+            largeImageURL: PropTypes.string.isRequired,
         }),
     ),
-    imagesClick: PropTypes.func,
+    imagesClick: PropTypes.func.isRequired,
 }

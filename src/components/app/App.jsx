@@ -5,7 +5,7 @@ import {Search} from '../searchbar/Searchbar'
 import {Gallery} from '../imagegallery/ImageGallery'
 import {Button} from '../button/Button'
 import {LoaderSpiner} from '../loader/Loader'
-import { fetchArticlesWithQuery } from 'components/services/Api';
+import { fetchArticlesWithQuery } from 'services/Api';
 import { Modal } from 'components/modal/Modal';
 
 
@@ -37,7 +37,7 @@ export class App extends Component {
               images: [...prevState.images, ...images],
             }));
               // console.log(this.state.images)
-
+            
             } catch (error) {
             this.setState({error: toast('Something went wrong!')})
           } finally {
@@ -47,6 +47,9 @@ export class App extends Component {
         }
 
 handleFormSubmit = name => {
+  if (name === this.state.name) {
+    return 
+  } 
 this.setState({
   name: name,
   images: [],
@@ -54,9 +57,9 @@ this.setState({
 })
 }
 
-reset = () => {
-    this.setState ({name: '',});
-};
+// reset = () => {
+//     this.setState ({name: '',});
+// };
 
 onLoadMore () {
   this.setState(prevState => ({
@@ -80,10 +83,12 @@ toogleModal = () => {
 
   render(){
     const images = this.state;
+    const props = images.images
+
     return(
       <AppContainer>
       <Search  onSubmit={this.handleFormSubmit} />      
-      {images.length !== 0 && <Gallery props={images} imagesClick={this.getlargeImageURL}/>}
+      {images.length !== 0 && <Gallery image={props} imagesClick={this.getlargeImageURL}/>}
       {this.state.images.length > 1 && <Button onClick={() => this.onLoadMore()}/>}
       {this.state.showModal && (<Modal src={this.state.largeImg} onClick={this.toogleModal}/>)}
       {this.state.loading && <LoaderSpiner/>}

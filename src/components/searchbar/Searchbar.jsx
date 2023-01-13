@@ -1,5 +1,6 @@
 
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import 'react-toastify/dist/ReactToastify.css';
 import {Searchbar, Form, SearchFormButton, SearchFormLabel, SearchFormInput} from "./Searchbar.styled"
 import {toast} from "react-toastify";
@@ -16,6 +17,7 @@ import {toast} from "react-toastify";
             this.setState ({
                 query: e.currentTarget.value.toLowerCase(),
             })
+            
         }
 
         handleSubmit = e => {
@@ -27,12 +29,12 @@ import {toast} from "react-toastify";
 
             this.props.onSubmit(this.state.query);
 
-            this.reset();
+            // this.reset();
         }
         
-        reset = () => {
-            this.setState ({query: '',});
-        };
+        // reset = () => {
+        //     this.setState ({query: '',});
+        // };
 
         render(){            
             return(
@@ -59,3 +61,6 @@ import {toast} from "react-toastify";
         }
     
 
+        Search.propTypes ={
+            onSubmit: PropTypes.func.isRequired, 
+          }

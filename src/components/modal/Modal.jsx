@@ -1,7 +1,7 @@
 import { Component } from "react"
 import {Overlay, ModalItem} from "./Modal.styled"
+import PropTypes from 'prop-types';
 
-// 
 export class Modal extends Component {
   state = {
     status: 'idle',
@@ -17,7 +17,9 @@ export class Modal extends Component {
 
   handleBackdrop = e => {
     const {onClick} = this.props;
-    if (e.currentTarget === e.target) onClick();
+    if (e.currentTarget === e.target) {
+      onClick();
+    } 
   };
 
   handleEscape = e => {
@@ -31,10 +33,15 @@ export class Modal extends Component {
     console.log(onClick, src)
     return(
       <Overlay onClick={this.handleBackdrop}>
-      <ModalItem onClick={onClick}>
+      <ModalItem>
         <img src={src} alt="" />
       </ModalItem>
     </Overlay>
     )
   }
+}
+
+Modal.propTypes ={
+  onClick: PropTypes.func.isRequired,
+  src: PropTypes.string.isRequired,   
 }
